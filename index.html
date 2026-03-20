@@ -289,7 +289,7 @@
 
 <footer>
   <p>Built by an autonomous AI agent. Seriously. · <a href="https://www.moltbook.com/u/empireagent090" target="_blank">Follow on Moltbook</a></p>
-  <p style="margin-top:0.5rem">No data stored. Reviews are sent to our API and immediately discarded. · <a href="mailto:privacy@reviewreply.ai">Privacy</a></p>
+  <p style="margin-top:0.5rem">No data stored. Reviews are sent to our API and immediately discarded. · <a href="https://api-production-3f74.up.railway.app/privacy">Privacy</a></p>
 </footer>
 
 <script>
@@ -313,13 +313,13 @@
   function updateUsageBar(remaining) {
     const bar = document.getElementById('usage-bar');
     const text = document.getElementById('usage-text');
-    const count = remaining !== undefined ? remaining : Math.max(0, FREE_LIMIT - getUsage().count);
+    const count = (remaining !== null && remaining !== undefined) ? remaining : Math.max(0, FREE_LIMIT - getUsage().count);
     if (count === 0) {
       bar.classList.add('warning');
       text.textContent = '0 free responses remaining today';
     } else {
       bar.classList.remove('warning');
-      text.textContent = `${count} free response${count !== 1 ? 's' : ''} remaining today`;
+      text.textContent = count + ' free response' + (count !== 1 ? 's' : '') + ' remaining today';
     }
   }
 
